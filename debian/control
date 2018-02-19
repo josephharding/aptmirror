@@ -5,6 +5,9 @@ Maintainer: Joe Harding <joe.harding@us.ibm.com>
 Build-Depends: build-essential,
                debhelper (>= 7),
                dh-systemd (>= 1.20) | libc6 (<< 2.20),
+               perl-modules-5.22 (= 5.22.1-9ubuntu0.2),
+               perl (= 5.22.1),
+               wget (= 1.17.1)
 Standards-Version: 3.8.3
 Homepage:
 Vcs-Git: git://github.ibm.com/immersive-env/aptmirror
