@@ -114,6 +114,9 @@ my %config_variables = (
     "no_check_certificate" => 0,
     "unlink"               => 0,
     "postmirror_script"    => '$var_path/postmirror.sh',
+    "certificate"          => '',
+    "ca-certificate"       => '',
+    "private-key"          => '',
     "use_proxy"            => 'off',
     "http_proxy"           => '',
     "https_proxy"          => '',
@@ -240,6 +243,15 @@ sub download_urls
     if ( get_variable("auth_no_challenge") == 1 )    { push( @args, "--auth-no-challenge" ); }
     if ( get_variable("no_check_certificate") == 1 ) { push( @args, "--no-check-certificate" ); }
     if ( get_variable("unlink") == 1 )               { push( @args, "--unlink" ); }
+
+    # this works
+    #push( @args, "--certificate=/etc/oblong/pkgs.oblong.com.forever.2289-08-31.client.crt" );
+    #push( @args, "--ca-certificate=/etc/oblong/pkgs.oblong.com.ca.crt" );
+    #push( @args, "--private-key=/etc/oblong/pkgs.oblong.com.forever.2289-08-31.client.key" );
+    if ( length( get_variable("certificate") ) ) { push( @args, "--certificate=" . get_variable("certificate") ); }
+    if ( length( get_variable("ca-certificate") ) ) { push( @args, "--ca-certificate=" . get_variable("ca-certificate") ); }
+    if ( length( get_variable("private-key") ) ) { push( @args, "--private-key=" . get_variable("private-key") ); }
+
     if ( length( get_variable("use_proxy") ) && ( get_variable("use_proxy") eq 'yes' || get_variable("use_proxy") eq 'on' ) )
     {
         if ( length( get_variable("http_proxy") ) || length( get_variable("https_proxy") ) ) { push( @args, "-e use_proxy=yes" ); }

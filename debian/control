@@ -1,0 +1,15 @@
+Source: ibm-aptmirror
+Section: non-free/misc
+Priority: extra
+Maintainer: Joe Harding <joe.harding@us.ibm.com>
+Build-Depends: build-essential,
+               debhelper (>= 7),
+               dh-systemd (>= 1.20) | libc6 (<< 2.20),
+Standards-Version: 3.8.3
+Homepage:
+Vcs-Git: git://github.ibm.com/immersive-env/aptmirror
+
+Package: ibm-aptmirror
+Architecture: any
+Depends: ${misc:Depends},
+Description: aptmirror fork
