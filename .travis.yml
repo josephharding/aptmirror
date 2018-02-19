@@ -6,12 +6,12 @@ install:
 script:
   - git clone git@github.ibm.com:immersive-env/packaging-tools.git
   - cd packaging-tools
-  - ansible-playbook build-assets-deb.yml -i austin --extra-vars "project=ibm-aptmirror project_root=${TRAVIS_BUILD_DIR}"
+  - ansible-playbook build-assets-deb.yml -i austin --extra-vars "project=ibm-aptmirror project_root=${TRAVIS_BUILD_DIR} build_number=${TRAVIS_BUILD_NUMBER}"
 
 deploy:
   provider: script
   script:
-    - ansible-playbook package-assets.yml -i austin --extra-vars "project=ibm-aptmirror project_root=${TRAVIS_BUILD_DIR}"
+    - ansible-playbook package-assets.yml -i austin --extra-vars "project=ibm-aptmirror project_root=${TRAVIS_BUILD_DIR} build_number=${TRAVIS_BUILD_NUMBER}"
   skip_cleanup: false
   on:
     branch: master
