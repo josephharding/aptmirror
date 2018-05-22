@@ -4,14 +4,14 @@ install:
   - sudo pip install ansible
 
 script:
-  - git clone git@github.ibm.com:immersive-env/packaging-tools.git
+  - git clone -b art-deb git@github.ibm.com:immersive-env/packaging-tools.git
   - cd packaging-tools
   - ansible-playbook build-assets-deb.yml -i austin --extra-vars "project=ibm-aptmirror project_root=${TRAVIS_BUILD_DIR} build_number=${TRAVIS_BUILD_NUMBER}"
 
 deploy:
   provider: script
   script:
-    - ansible-playbook package-assets.yml -i austin --extra-vars "project=ibm-aptmirror project_root=${TRAVIS_BUILD_DIR} build_number=${TRAVIS_BUILD_NUMBER}"
+    - ansible-playbook package-assets.yml -i austin --extra-vars "project=ibm-aptmirror project_root=${TRAVIS_BUILD_DIR} build_number=${TRAVIS_BUILD_NUMBER} artifactory_apikey=${ARTIFACTORY_CREDS}"
   skip_cleanup: false
   on:
     branch: master
