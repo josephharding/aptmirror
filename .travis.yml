@@ -4,7 +4,7 @@ install:
   - sudo pip install ansible
 
 script:
-  - git clone -b art-deb git@github.ibm.com:immersive-env/packaging-tools.git
+  - git clone git@github.ibm.com:immersive-env/packaging-tools.git
   - cd packaging-tools
   - ansible-playbook build-assets-deb.yml -i austin --extra-vars "project=ibm-aptmirror project_root=${TRAVIS_BUILD_DIR} build_number=${TRAVIS_BUILD_NUMBER} build_machine=build-assets"
 
